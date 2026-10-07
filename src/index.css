@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink font-sans text-white antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #8b5cf6;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #07060d;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2542;
+  border-radius: 8px;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .glass {
+    @apply border border-line bg-white/[0.03] backdrop-blur-md;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-400 via-neon to-lime bg-clip-text text-transparent;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 transition hover:scale-[1.03] hover:shadow-brand-500/50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white transition hover:border-brand-400/60 hover:bg-white/[0.08];
+  }
+  .chip {
+    @apply rounded-full border border-line bg-white/[0.04] px-3 py-1 font-mono text-xs text-white/70;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition focus:border-brand-400 focus:bg-white/[0.07];
+  }
+}
