@@ -30,8 +30,8 @@ export const profile = {
 
 export const stats = [
   { value: '2+', label: 'Years experience' },
-  { value: '4', label: 'Live store apps' },
-  { value: '2', label: 'Platforms: Android & iOS' },
+  { value: '5', label: 'Live store apps' },
+  { value: '3', label: 'Platforms: Web,Android & iOS ' },
   { value: '60%+', label: 'Feature ownership on Daksh' }
 ]
 

@@ -1,19 +1,23 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#07060d",
-        panel: "#0e0c1a",
-        line: "rgba(255,255,255,0.08)",
+        ink: "rgb(var(--ink) / <alpha-value>)",
+        panel: "rgb(var(--panel) / <alpha-value>)",
+        fg: "rgb(var(--fg) / <alpha-value>)",
+        line: "var(--line)",
         brand: {
-          400: "#a78bfa",
-          500: "#8b5cf6",
-          600: "#7c3aed",
+          400: "rgb(var(--brand-400) / <alpha-value>)",
+          500: "rgb(var(--brand-500) / <alpha-value>)",
+          600: "rgb(var(--brand-600) / <alpha-value>)",
         },
-        neon: "#22d3ee",
+        // fixed colors (same in both modes)
         lime: "#c6ff3d",
+        onlime: "#14130f", // text that sits on top of lime
+        neon: "#22d3ee",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

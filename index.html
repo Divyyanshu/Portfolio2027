@@ -8,6 +8,20 @@
       content="Divyanshu Tailor - React Native & React.js developer building production-ready Android and iOS apps."
     />
     <title>Divyanshu Tailor | React Native Developer</title>
+
+    <!-- Theme: page paint hone se pehle dark/light class laga deta hai (flash nahi hota) -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          var dark = t
+            ? t === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {}
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

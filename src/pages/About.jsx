@@ -110,7 +110,9 @@ export default function About() {
           {achievements.map((a, i) => (
             <Reveal key={a.title} i={i}>
               <div className="glass flex flex-col gap-3 rounded-3xl p-6 sm:flex-row sm:items-start sm:gap-6">
-                <span className="chip w-fit !text-lime">{a.tag}</span>
+                <span className="chip w-fit !text-black dark:!text-lime">
+                  {a.tag}
+                </span>
                 <div>
                   <h3 className="font-display text-lg font-bold">{a.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-white/60">

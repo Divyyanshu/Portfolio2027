@@ -2,28 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- THEME COLORS ----------
+   Values are "R G B" so Tailwind opacity works (bg-fg/10, text-fg/60 ...).
+   Light = cream paper + dark ink text. Dark = near-black + cream text.
+   Change colors ONLY here and the whole site follows. */
+:root {
+  color-scheme: light;
+  --ink: 243 239 228; /* #f3efe4 cream */
+  --panel: 252 250 244; /* #fcfaf4 */
+  --fg: 20 19 15; /* #14130f */
+  --line: rgb(20 19 15 / 0.14);
+  /* accent for TEXT on cream: deep olive (lime itself is unreadable on cream) */
+  --brand-400: 120 150 10;
+  --brand-500: 92 120 0;
+  --brand-600: 70 94 0;
+  --scroll-thumb: #cfc9b6;
+}
+
+.dark {
+  color-scheme: dark;
+  --ink: 10 10 8; /* #0a0a08 */
+  --panel: 20 20 16; /* #141410 */
+  --fg: 243 239 228; /* cream */
+  --line: rgb(243 239 228 / 0.1);
+  /* lime shades */
+  --brand-400: 214 255 94;
+  --brand-500: 198 255 61;
+  --brand-600: 168 224 31;
+  --scroll-thumb: #2f2f26;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-ink font-sans text-white antialiased;
+  @apply bg-ink font-sans text-fg antialiased transition-colors duration-300;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: #8b5cf6;
-  color: white;
+  background: #c6ff3d;
+  color: #14130f;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #07060d;
+  background: rgb(var(--ink));
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2542;
+  background: var(--scroll-thumb);
   border-radius: 8px;
 }
 
@@ -32,21 +62,73 @@ body {
     @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
   .glass {
-    @apply border border-line bg-white/[0.03] backdrop-blur-md;
+    @apply border border-line bg-panel/70 backdrop-blur-md;
   }
   .gradient-text {
-    @apply bg-gradient-to-r from-brand-400 via-neon to-lime bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent;
   }
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 transition hover:scale-[1.03] hover:shadow-brand-500/50;
-  }
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold text-[#14130f] shadow-lg shadow-lime/20 transition hover:scale-[1.03] hover:shadow-lime/40;
+}
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white transition hover:border-brand-400/60 hover:bg-white/[0.08];
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-fg/[0.04] px-6 py-3 text-sm font-semibold text-fg transition hover:border-brand-500/60 hover:bg-fg/[0.08];
   }
   .chip {
-    @apply rounded-full border border-line bg-white/[0.04] px-3 py-1 font-mono text-xs text-white/70;
+    @apply rounded-full border border-line bg-fg/[0.04] px-3 py-1 font-mono text-xs text-fg/70;
   }
   .input {
-    @apply w-full rounded-xl border border-line bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition focus:border-brand-400 focus:bg-white/[0.07];
+    @apply w-full rounded-xl border border-line bg-fg/[0.04] px-4 py-3 text-sm text-fg placeholder-fg/30 outline-none transition focus:border-brand-500 focus:bg-fg/[0.07];
   }
+}
+
+/* ===== LIGHT MODE FIX =====
+   Pages mein hardcoded text-white / bg-white/.. / border-white/.. hai,
+   jo cream background pe dikhta nahi. Ye sirf light mode mein override karta hai.
+   Dark mode pe koi asar nahi. */
+
+/* text-white/NN -> dark ink (default softness) */
+:root:not(.dark) [class*="text-white/"]:not(.keep-white, .keep-white *) {
+  color: rgb(var(--fg) / 0.72);
+}
+/* /10 - /40 -> halka */
+:root:not(.dark)
+  :is([class*="text-white/1"], [class*="text-white/2"], [class*="text-white/3"], [class*="text-white/4"]):not(.keep-white, .keep-white *) {
+  color: rgb(var(--fg) / 0.55);
+}
+/* /50 */
+:root:not(.dark) [class*="text-white/5"]:not(.keep-white, .keep-white *) {
+  color: rgb(var(--fg) / 0.65);
+}
+/* /80, /90 -> lagbhag full */
+:root:not(.dark)
+  :is([class*="text-white/8"], [class*="text-white/9"]):not(.keep-white, .keep-white *) {
+  color: rgb(var(--fg) / 0.9);
+}
+
+/* plain text-white -> full ink */
+:root:not(.dark) [class~="text-white"]:not(.keep-white, .keep-white *) {
+  color: rgb(var(--fg));
+}
+
+/* white tinted surfaces / borders */
+:root:not(.dark) [class*="bg-white/"]:not(.keep-white, .keep-white *) {
+  background-color: rgb(var(--fg) / 0.05);
+}
+:root:not(.dark) [class*="border-white/"]:not(.keep-white, .keep-white *) {
+  border-color: var(--line);
+}
+
+/* low-contrast accent text */
+:root:not(.dark) .text-neon:not(.keep-white, .keep-white *) {
+  color: #0e7490;
+}
+:root:not(.dark) .text-lime:not(.keep-white, .keep-white *) {
+  color: #5c7800;
+}
+/* data.js se inline style wale accent colors */
+:root:not(.dark) [style*="rgb(34, 211, 238)"]:not(.keep-white, .keep-white *) {
+  color: #0e7490 !important;
+}
+:root:not(.dark) [style*="rgb(198, 255, 61)"]:not(.keep-white, .keep-white *) {
+  color: #5c7800 !important;
 }
