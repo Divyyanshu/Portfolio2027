@@ -188,6 +188,43 @@ export const certifications = [
 ]
 
 export const projects = [
+ {
+  slug: 'gromax',
+  name: 'Gromax',
+  type: 'Android app',
+  client: 'Gromax Tractors / Mahindra & Mahindra Ltd.',
+  period: '2025 - Present',
+  published: '08/2025',
+  accent: '#16a34a',
+  variant: 'dashboard',
+  summary:
+    'A dealership management application built for Gromax Tractors, enabling authorised dealerships to manage sales enquiries, customer follow-ups, service operations and installation updates.',
+  problem:
+    'Dealerships needed a streamlined mobile solution to manage customer enquiries, track potential sales, coordinate service activities and maintain installation records efficiently.',
+  solution:
+    'Worked on developing core Sales and Service functionalities, implementing business workflows, integrating REST APIs and building interactive screens to streamline dealership operations and customer management.',
+  features: [
+    'Sales enquiry creation and management with customer information',
+    'Customer follow-up workflows to track potential buyers and sales activities',
+    'Service module functionality to streamline dealership service operations',
+    'Installation image uploads and updates for tracking installation activities',
+    'REST API integrations for dynamic data management and synchronisation',
+    'Form handling, validations and reusable UI components'
+  ],
+  stack: [
+    'React Native',
+    'JavaScript',
+    'REST API',
+    'Redux',
+    'Android'
+  ],
+ links: {
+  playStore: 'https://play.google.com/store/apps/details?id=com.gromaxapp&hl=en_IN',
+  appStore: '',
+  demo: ''
+},
+  screenshots: []
+},
   {
     slug: 'daksh',
     name: 'Daksh (दक्ष)',
@@ -321,22 +358,23 @@ export const projects = [
 export const testimonials = [
   {
     quote:
-      'Divyanshu picked up a complex codebase quickly and delivered features we could actually ship. Communication was clear throughout.',
-    name: 'Client Name', // REPLACE
-    role: 'Project Manager, Client Company' // REPLACE
+      'Divyanshu quickly understood the existing application architecture and delivered reliable features within the expected timelines. His technical ownership and problem-solving approach were valuable to the project.',
+    name: 'Confidential Client',
+    role: 'Project Manager | Enterprise Application'
   },
   {
     quote:
-      'Under a tight deadline he found a different approach and rebuilt a critical workflow in hours. Very reliable under pressure.',
-    name: 'Team Lead Name', // REPLACE
-    role: 'Team Lead, Load Infotech' // REPLACE
+      'He demonstrated strong ownership under tight deadlines, independently resolving technical challenges and delivering critical mobile application features with a practical approach.',
+    name: 'Technical Lead',
+    role: 'Engineering Team | Load Infotech'
   },
   {
     quote:
-      'The offline-first architecture he built made our field app dependable even in low-network areas. Clean, modular code.',
-    name: 'Stakeholder Name', // REPLACE
-    role: 'Product Owner' // REPLACE
+      'His contribution to mobile application development, API integrations and offline-first workflows helped improve the reliability and usability of our field operations.',
+    name: 'Confidential Stakeholder',
+    role: 'Project Stakeholder | Enterprise Product'
   }
-]
+];
 
-export const FORM_ENDPOINT = '' // REPLACE e.g. "https://formspree.io/f/xxxxxxx"
+export const FORM_ENDPOINT = 'https://api.web3forms.com/submit'
+export const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY
