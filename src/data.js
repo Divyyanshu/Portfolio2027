@@ -1,4 +1,4 @@
-import resumePdf from "./assests/files/DivyanshuTailor_Resume.pdf";
+import resumePdf from "./assests/files/Divyanshu_Resume.pdf";
 
 export const profile = {
   name: 'Divyanshu Tailor',
